@@ -1,0 +1,15 @@
+#!/bin/bash
+# usage: sepgal n_stars
+#file="vecteur10.txt"
+let ngal=$1/2
+let ndemi=ngal+1
+#head -$ndemi $file | tail -$ngal > "gal1"$file
+#exit 0
+list=`ls -1 vecteur*.txt`
+for i in $list
+do  echo $i
+    echo $ngal > "gal1"$i
+    head -$ndemi $i | tail -$ngal >> "gal1"$i
+    echo $ngal > "gal2"$i
+    tail -$ngal $i >> "gal2"$i
+done

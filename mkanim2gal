@@ -1,0 +1,9 @@
+#!/bin/bash
+# usage: mkanim axis_limits
+list=`ls -1 vecteur*.txt`
+for i in $list
+do echo "set term gif ; set multiplot ; set pointsize 0.4; set data style points; set view 0,0;  set xrange [-"$1":"$1"]; set yrange [-"$1":"$1"]; set zrange [-"$1":"$1"];  splot 'gal1"$i"' ; replot 'gal2"$i"'" >toto.1
+   gnuplot -persist toto.1 > $i.gif
+done
+convert -delay 10 -loop 100 vecteur*gif animation.gif
+animate animation.gif
